@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -49,8 +50,23 @@ public class TestJdk8 {
         Runnable runnable = () -> {
             System.out.println("test lambda...");
         };
-
         new Thread(runnable).start();
+
+        Arrays.asList("111", "222", "333").forEach(System.out::println);
+        Arrays.asList("111", "222", "333").forEach(item -> {
+            System.out.println(item);
+        });
+    }
+
+    @Test
+    public void testOptional() {
+        Optional<String> fullName =
+                //Optional.ofNullable(null);
+                Optional.ofNullable("赵日天");
+        System.out.println("is preset:" + fullName.isPresent());
+        System.out.println("full name:" + fullName.orElseGet(() -> "[none]"));
+        System.out.println(fullName.map(s -> "Hey " + s + "!").orElse("Hey Stranger!"));
+        fullName.ifPresent(System.out::println);
     }
 
     @Test
