@@ -1,7 +1,6 @@
 package com.huixing.commons;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.codec.binary.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -14,7 +13,6 @@ import org.junit.Test;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.Base64;
 
 /**
  *
