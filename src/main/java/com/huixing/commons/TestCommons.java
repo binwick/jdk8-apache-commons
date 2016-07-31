@@ -1,8 +1,6 @@
 package com.huixing.commons;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.codec.binary.*;
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -53,7 +51,7 @@ public class TestCommons {
 
     @Test
     public void testCollectionUtils() {
-        Collection collections = new ArrayList();
+        Collection collections = CollectionUtils.EMPTY_COLLECTION;
         System.out.println(CollectionUtils.isEmpty(collections)); // 集合判断空值
     }
 
