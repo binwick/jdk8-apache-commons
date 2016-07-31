@@ -1,6 +1,7 @@
 package com.huixing.commons;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.codec.binary.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -10,7 +11,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.Test;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.Base64;
 
 /**
  *
@@ -67,13 +71,19 @@ public class TestCommons {
     @Test
     public void testDigestUtils() throws Exception {
         System.out.println(DigestUtils.md5Hex("123456"));// md5
-        // jdk8 之前
-        org.apache.commons.codec.binary.Base64.decodeBase64("123456");
-        org.apache.commons.codec.binary.Base64.encodeBase64String("123456".getBytes());
+        // jdk8 之前, 默认是 UTF-8
+        String encodeBase64String = org.apache.commons.codec.binary.Base64.encodeBase64String("123456".getBytes());
+        byte[] decodeBase64 = org.apache.commons.codec.binary.Base64.decodeBase64(encodeBase64String);
 
-        // jdk8
-        java.util.Base64.getDecoder().decode("123456");
-        java.util.Base64.getEncoder().encodeToString("123456".getBytes());
+        System.out.println(encodeBase64String);
+        System.out.println(new String(decodeBase64, StandardCharsets.UTF_8));
+
+
+        // jdk8 默认是 iso-8859-1
+        encodeBase64String = Base64.getEncoder().encodeToString("123456".getBytes());
+        decodeBase64 = Base64.getDecoder().decode(encodeBase64String);
+        System.out.println(encodeBase64String);
+        System.out.println(new String(decodeBase64, Charset.forName("UTF-8")));
     }
 
     @Test
