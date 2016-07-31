@@ -82,7 +82,10 @@ public class TestCommons {
     public void testBeanUtils() throws Exception {
         Object orig = new Object();
         Object dest = new Object();
+        Map map = MapUtils.EMPTY_MAP;
+
         BeanUtils.copyProperties(dest, orig);
+        BeanUtils.populate(dest, map);
     }
 
 }
