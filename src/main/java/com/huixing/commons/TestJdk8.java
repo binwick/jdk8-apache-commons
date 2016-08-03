@@ -39,8 +39,9 @@ public class TestJdk8 {
         //
         Long sum = strings.stream()
                 .map(item -> Long.valueOf(item) / 111) // 重新组合新的列表
-                .reduce(Long::sum)
-                .get();
+                .reduce(0L, (x, y) -> x + y);
+//                .reduce(Long::sum)
+//                .get();
         System.out.println(sum);
 
     }
