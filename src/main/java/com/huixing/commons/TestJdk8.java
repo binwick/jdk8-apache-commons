@@ -1,5 +1,6 @@
 package com.huixing.commons;
 
+import com.huixing.commons.functional.Converter;
 import org.junit.Test;
 
 import java.time.Instant;
@@ -9,6 +10,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -82,4 +85,30 @@ public class TestJdk8 {
         LocalDate localDate = LocalDate.now();
         System.out.println(localDate.plus(1, ChronoUnit.DAYS));
     }
+
+    @Test
+    public void testConverter() {
+        Converter<String, Integer> converter =
+                // from -> Integer.valueOf(from);
+                Integer::valueOf;
+        Integer convert = converter.convert("1234");
+        System.out.println(convert);
+    }
+
+    @Test
+    public void test() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        eval(list, n -> n > 3);
+        eval(list, n -> true);
+    }
+
+    public static void eval(List<Integer> list, Predicate<Integer> predicate) {
+        for (Integer n : list) {
+            if (predicate.test(n)) {
+                System.out.println(n + " ");
+            }
+        }
+    }
 }
+
+
