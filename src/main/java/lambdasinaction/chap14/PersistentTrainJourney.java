@@ -9,17 +9,23 @@ public class PersistentTrainJourney {
         TrainJourney tj2 = new TrainJourney(20, new TrainJourney(50, null));
 
         TrainJourney appended = append(tj1, tj2);
-        visit(appended, tj -> { System.out.print(tj.price + " - "); });
+        visit(appended, tj -> {
+            System.out.print(tj.price + " - ");
+        });
         System.out.println();
 
         // A new TrainJourney is created without altering tj1 and tj2.
         TrainJourney appended2 = append(tj1, tj2);
-        visit(appended2, tj -> { System.out.print(tj.price + " - "); });
+        visit(appended2, tj -> {
+            System.out.print(tj.price + " - ");
+        });
         System.out.println();
 
         // tj1 is altered but it's still not visible in the results.
         TrainJourney linked = link(tj1, tj2);
-        visit(linked, tj -> { System.out.print(tj.price + " - "); });
+        visit(linked, tj -> {
+            System.out.print(tj.price + " - ");
+        });
         System.out.println();
 
         // ... but here, if this code is uncommented, tj2 will be appended

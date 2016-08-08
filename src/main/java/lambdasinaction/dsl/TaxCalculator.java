@@ -23,7 +23,7 @@ import java.util.function.Function;
 
 public class TaxCalculator {
 
-    public static double calculate( Order order, boolean useRegional, boolean useGeneral, boolean useSurcharge ) {
+    public static double calculate(Order order, boolean useRegional, boolean useGeneral, boolean useSurcharge) {
         double value = order.getValue();
         if (useRegional) value = Tax.regional(value);
         if (useGeneral) value = Tax.general(value);
@@ -41,7 +41,7 @@ public class TaxCalculator {
     }
 
     public TaxCalculator withTaxGeneral() {
-        useGeneral= true;
+        useGeneral = true;
         return this;
     }
 
@@ -51,31 +51,31 @@ public class TaxCalculator {
     }
 
     public double calculate(Order order) {
-        return calculate( order, useRegional, useGeneral, useSurcharge );
+        return calculate(order, useRegional, useGeneral, useSurcharge);
     }
 
     public Function<Double, Double> taxFuncion = Function.identity();
 
     public TaxCalculator with(Function<Double, Double> f) {
-        taxFuncion.andThen( f );
+        taxFuncion.andThen(f);
         return this;
     }
 
     public double calculateF(Order order) {
-        return taxFuncion.apply( order.getValue() );
+        return taxFuncion.apply(order.getValue());
     }
 
     public static void main(String[] args) {
         Order order = new Order();
 
-        double value = TaxCalculator.calculate( order, true, false, true );
+        double value = TaxCalculator.calculate(order, true, false, true);
 
         value = new TaxCalculator().withTaxRegional()
-                                   .withTaxSurcharge()
-                                   .calculate( order );
+                .withTaxSurcharge()
+                .calculate(order);
 
         value = new TaxCalculator().with(Tax::regional)
-                                   .with(Tax::surcharge)
-                                   .calculate( order );
+                .with(Tax::surcharge)
+                .calculate(order);
     }
 }

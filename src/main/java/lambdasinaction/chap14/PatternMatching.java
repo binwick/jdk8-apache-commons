@@ -90,6 +90,7 @@ public class PatternMatching {
 
     static class Number extends Expr {
         int val;
+
         public Number(int val) {
             this.val = val;
         }
@@ -103,6 +104,7 @@ public class PatternMatching {
     static class BinOp extends Expr {
         String opname;
         Expr left, right;
+
         public BinOp(String opname, Expr left, Expr right) {
             this.opname = opname;
             this.left = left;
@@ -124,8 +126,8 @@ public class PatternMatching {
     }
 
     static <T> T patternMatchExpr(Expr e,
-            TriFunction<String, Expr, Expr, T> binopcase,
-            Function<Integer, T> numcase, Supplier<T> defaultcase) {
+                                  TriFunction<String, Expr, Expr, T> binopcase,
+                                  Function<Integer, T> numcase, Supplier<T> defaultcase) {
 
         if (e instanceof BinOp) {
             return binopcase.apply(((BinOp) e).opname, ((BinOp) e).left, ((BinOp) e).right);

@@ -13,6 +13,6 @@ public class OperationsWithOptional {
     }
 
     public static final Optional<Integer> max(Optional<Integer> i, Optional<Integer> j) {
-         return i.flatMap(a -> j.map(b -> Math.max(a, b)));
+        return i.flatMap(a -> j.map(b -> Math.max(a, b)));
     }
 }

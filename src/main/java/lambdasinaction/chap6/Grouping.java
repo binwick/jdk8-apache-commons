@@ -7,9 +7,11 @@ import static lambdasinaction.chap6.Dish.menu;
 
 public class Grouping {
 
-    enum CaloricLevel { DIET, NORMAL, FAT };
+    enum CaloricLevel {DIET, NORMAL, FAT}
 
-    public static void main(String ... args) {
+    ;
+
+    public static void main(String... args) {
         System.out.println("Dishes grouped by type: " + groupDishesByType());
         System.out.println("Dishes grouped by caloric level: " + groupDishesByCaloricLevel());
         System.out.println("Dishes grouped by type and caloric level: " + groupDishedByTypeAndCaloricLevel());
@@ -30,7 +32,7 @@ public class Grouping {
                     if (dish.getCalories() <= 400) return CaloricLevel.DIET;
                     else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
                     else return CaloricLevel.FAT;
-                } ));
+                }));
     }
 
     private static Map<Dish.Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel() {
@@ -40,7 +42,7 @@ public class Grouping {
                             if (dish.getCalories() <= 400) return CaloricLevel.DIET;
                             else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
                             else return CaloricLevel.FAT;
-                        } )
+                        })
                 )
         );
     }
@@ -71,9 +73,11 @@ public class Grouping {
     private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {
         return menu.stream().collect(
                 groupingBy(Dish::getType, mapping(
-                        dish -> { if (dish.getCalories() <= 400) return CaloricLevel.DIET;
-                        else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
-                        else return CaloricLevel.FAT; },
-                        toSet() )));
+                        dish -> {
+                            if (dish.getCalories() <= 400) return CaloricLevel.DIET;
+                            else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+                            else return CaloricLevel.FAT;
+                        },
+                        toSet())));
     }
 }
