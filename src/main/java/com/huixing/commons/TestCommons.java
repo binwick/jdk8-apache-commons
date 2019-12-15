@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.Test;
 
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -81,7 +80,7 @@ public class TestCommons {
         encodeBase64String = Base64.getEncoder().encodeToString("123456".getBytes());
         decodeBase64 = Base64.getDecoder().decode(encodeBase64String);
         System.out.println(encodeBase64String);
-        System.out.println(new String(decodeBase64, Charset.forName("UTF-8")));
+        System.out.println(new String(decodeBase64, StandardCharsets.UTF_8));
     }
 
     @Test
