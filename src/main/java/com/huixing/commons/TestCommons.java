@@ -69,7 +69,7 @@ public class TestCommons {
     @Test
     public void testDigestUtils() throws Exception {
         System.out.println(DigestUtils.md5Hex("123456"));// md5
-        // jdk8 之前, 默认是 UTF-8
+        // jdk8 之前, apache codec 默认是 UTF-8
         String encodeBase64String = org.apache.commons.codec.binary.Base64.encodeBase64String("123456".getBytes());
         byte[] decodeBase64 = org.apache.commons.codec.binary.Base64.decodeBase64(encodeBase64String);
 
